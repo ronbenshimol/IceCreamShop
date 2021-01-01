@@ -1,0 +1,19 @@
+view:
+    methodes:
+        addProductNotify()
+        doneOrderNotify()
+        orderDone(orderDescription){ "here is your order: " + orderDescription}
+        
+controller:
+    props:
+        view
+        order
+    methodes:
+        addProductNotification(Product)
+        doneOrderNotification()
+
+    #after the order is done, befor delivery: view.orderDone(order.orderDescription)
+
+
+model:
+    

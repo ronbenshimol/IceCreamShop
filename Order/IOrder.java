@@ -2,7 +2,6 @@ package Order;
 
 import products.Product;
 
-public interface IOrder {
-    void prepareOrder();
+public interface IOrder extends OrderAggregate{
     void addProduct(Product product);
 }
