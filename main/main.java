@@ -2,8 +2,10 @@ package main;
 
 import Controller.MainController;
 import Controller.OrderController;
+import DeliveryServices.ConcreteDeliveryServiceFactory;
 import DeliveryServices.DeliveryService;
-import DeliveryServices.WoltDeliveryService;
+import DeliveryServices.DeliveryServiceFactory;
+import DeliveryServices.DeliveryServiceType;
 import Order.IOrder;
 import Order.Order;
 import View.View;
@@ -14,7 +16,8 @@ public class main {
         
         IOrder order = new Order();
         View view = new CliView();
-        DeliveryService deliveryService = new WoltDeliveryService();
+        DeliveryServiceFactory deliveryServiceFactory = new ConcreteDeliveryServiceFactory();
+        DeliveryService deliveryService = deliveryServiceFactory.createDeliveryService(DeliveryServiceType.Wolt);
         OrderController controller = new MainController(order, view, deliveryService);
         deliveryService.addDeliverySubscriber(view);
         view.addAddProductSubscriber(controller);
