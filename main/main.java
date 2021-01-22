@@ -3,9 +3,7 @@ package main;
 import Controller.MainController;
 import Controller.OrderController;
 import DeliveryServices.ConcreteDeliveryServiceFactory;
-import DeliveryServices.DeliveryService;
 import DeliveryServices.DeliveryServiceFactory;
-import DeliveryServices.DeliveryServiceType;
 import Order.IOrder;
 import Order.Order;
 import View.InputOutput;
@@ -21,15 +19,13 @@ public class main {
         IOrder order = new Order();
         ProductMenuFactory cliMenuFactory = new ConcreteProductMenuFactory();
         InputOutput inputOutput = new CliInputOutput();
-        
+
         View view = new CliView(inputOutput, cliMenuFactory);
 
         DeliveryServiceFactory deliveryServiceFactory = new ConcreteDeliveryServiceFactory();
-        DeliveryService deliveryService = deliveryServiceFactory.createDeliveryService(DeliveryServiceType.Wolt);
 
-        OrderController controller = new MainController(order, view, deliveryService);
+        OrderController controller = new MainController(order, view, deliveryServiceFactory);
         
-        deliveryService.addDeliverySubscriber(view);
         view.addAddProductSubscriber(controller);
         view.addDoneOrderSubscriber(controller);
 

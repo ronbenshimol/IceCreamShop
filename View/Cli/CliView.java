@@ -5,7 +5,6 @@ import Order.IOrder;
 import Order.OrderIterator;
 import View.InputOutput;
 import View.View;
-import View.Cli.ProductMenus.IceCreamMenu;
 import View.Cli.ProductMenus.ProductCliMenu;
 import View.Cli.ProductMenus.ProductMenuFactory;
 import events.AddProductSubscriber;
