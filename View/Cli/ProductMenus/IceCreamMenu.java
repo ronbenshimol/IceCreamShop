@@ -1,7 +1,6 @@
 package View.Cli.ProductMenus;
 
-import java.util.Scanner;
-
+import View.InputOutput;
 import products.Product;
 import products.iceCream.IceCream;
 import products.iceCream.PlasticCup;
@@ -12,28 +11,27 @@ import products.iceCream.iceCreamFlavors.VanillaIceCream;
 
 public class IceCreamMenu implements ProductCliMenu {
 
-    private Scanner scanner;
     private boolean addAnotherFlavor = true;
     private IceCream iceCream;
-    public IceCreamMenu() {
-        this.scanner = new Scanner(System.in);
+    private InputOutput inputOutput;
+    public IceCreamMenu(InputOutput ioHandler) {
+        this.inputOutput = ioHandler;
     }
 
     @Override
     public Product displayMenue() {
         
         int numberChoice, numberChoice2;
+        
+        inputOutput.clearDisplay();
+        inputOutput.diplay("what Ice Cream do you want?");
+        inputOutput.diplay("1. in a plastic cup.");
+        inputOutput.diplay("2. in a waffle cone.");
+        inputOutput.diplay("The default is a cup if you choose other number");
+        inputOutput.diplay("");
+        inputOutput.diplay("please enter the number of your choice...");
 
-        System.out.print("\033[H\033[2J");// clear the console
-
-        System.out.println("what Ice Cream do you want?");
-        System.out.println("1. in a plastic cup.");
-        System.out.println("2. in a waffle cone.");
-        System.out.println("The default is a cup if you choose other number");
-        System.out.println("");
-        System.out.println("please enter the number of your choice...");
-
-        numberChoice = this.scanner.nextInt();
+        numberChoice = inputOutput.inputInt();
 
         if(numberChoice == 1){
             iceCream = new PlasticCup();
@@ -41,28 +39,28 @@ public class IceCreamMenu implements ProductCliMenu {
             iceCream = new WaffleCone();
         }
 
-        System.out.print("\033[H\033[2J");// clear the console
+        inputOutput.clearDisplay();
 
-        System.out.println("Great! lets choose the flavors for your Ice Cream now.");
-        System.out.println("Press any key to continue..");
-        this.scanner.nextLine();
+        inputOutput.diplay("Great! lets choose the flavors for your Ice Cream now.");
+        inputOutput.diplay("Press any key to continue..");
+        inputOutput.inputLine();
 
         do {
-            System.out.print("\033[H\033[2J");// clear the console
-            System.out.println("what flavor do you want to add?");
+            inputOutput.clearDisplay();
+            inputOutput.diplay("what flavor do you want to add?");
 
-            System.out.println("1. Vanilla Flavor");
-            System.out.println("2. Banana Flavor");
-            System.out.println("3. Mint Flavor");
-            System.out.println("The default is a vanilla flavor");
-            numberChoice = this.scanner.nextInt();
+            inputOutput.diplay("1. Vanilla Flavor");
+            inputOutput.diplay("2. Banana Flavor");
+            inputOutput.diplay("3. Mint Flavor");
+            inputOutput.diplay("The default is a vanilla flavor");
+            numberChoice = inputOutput.inputInt();
 
-            System.out.print("\033[H\033[2J");// clear the console
-            System.out.println("You chose option " + numberChoice);
+            inputOutput.clearDisplay();
+            inputOutput.diplay("You chose option " + numberChoice);
 
-            System.out.println("");
-            System.out.println("How many scoops do you want?");
-            numberChoice2 = this.scanner.nextInt();
+            inputOutput.diplay("");
+            inputOutput.diplay("How many scoops do you want?");
+            numberChoice2 = inputOutput.inputInt();
             
             switch (numberChoice) {
                 case 1:
@@ -79,28 +77,28 @@ public class IceCreamMenu implements ProductCliMenu {
                     break;
             }
 
-            System.out.print("\033[H\033[2J");// clear the console
+            inputOutput.clearDisplay();
 
-            System.out.println("Great! do you want another flavor? ");
-            System.out.println("1. no");
-            System.out.println("2. yes");
-            System.out.println("The default is no if you choose other number");
-            numberChoice = this.scanner.nextInt();
+            inputOutput.diplay("Great! do you want another flavor? ");
+            inputOutput.diplay("1. no");
+            inputOutput.diplay("2. yes");
+            inputOutput.diplay("The default is no if you choose other number");
+            numberChoice = inputOutput.inputInt();
             addAnotherFlavor = numberChoice == 2 ? true: false;
             
         } while (addAnotherFlavor);
 
-        System.out.print("\033[H\033[2J");// clear the console
+        inputOutput.clearDisplay();
 
-        System.out.println("This is the ice cream we are going to make:");
-        System.out.println(iceCream.getDescription());
-        System.out.println("the price is: " + iceCream.getPrice());
-        System.out.println("do you accept, or you want to cancel the order of this ice cream?");
+        inputOutput.diplay("This is the ice cream we are going to make:");
+        inputOutput.diplay(iceCream.getDescription());
+        inputOutput.diplay("the price is: " + iceCream.getPrice());
+        inputOutput.diplay("do you accept, or you want to cancel the order of this ice cream?");
 
-        System.out.println("1. yes, I want this ice cream.");
-        System.out.println("2. no, cancle this ice cream.");
-        numberChoice = this.scanner.nextInt();
-        System.out.println("You chose option " + numberChoice);
+        inputOutput.diplay("1. yes, I want this ice cream.");
+        inputOutput.diplay("2. no, cancle this ice cream.");
+        numberChoice = inputOutput.inputInt();
+        inputOutput.diplay("You chose option " + numberChoice);
 
         if(numberChoice == 1)
             return iceCream;

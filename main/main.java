@@ -8,17 +8,24 @@ import DeliveryServices.DeliveryServiceFactory;
 import DeliveryServices.DeliveryServiceType;
 import Order.IOrder;
 import Order.Order;
+import View.InputOutput;
 import View.View;
+import View.Cli.CliInputOutput;
 import View.Cli.CliView;
 
 public class main {
     public static void main(String[] args) {
         
         IOrder order = new Order();
-        View view = new CliView();
+
+        InputOutput inputOutput = new CliInputOutput();
+        View view = new CliView(inputOutput);
+
         DeliveryServiceFactory deliveryServiceFactory = new ConcreteDeliveryServiceFactory();
         DeliveryService deliveryService = deliveryServiceFactory.createDeliveryService(DeliveryServiceType.Wolt);
+
         OrderController controller = new MainController(order, view, deliveryService);
+        
         deliveryService.addDeliverySubscriber(view);
         view.addAddProductSubscriber(controller);
         view.addDoneOrderSubscriber(controller);

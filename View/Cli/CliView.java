@@ -1,10 +1,9 @@
 package View.Cli;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import Order.IOrder;
 import Order.OrderIterator;
+import View.InputOutput;
 import View.View;
 import View.Cli.ProductMenus.IceCreamMenu;
 import events.AddProductSubscriber;
@@ -13,15 +12,14 @@ import products.Product;
 
 public class CliView implements View {
 
-    private Scanner scanner;
     private boolean addAnotherProduct = true;
     private Product product;
-
+    InputOutput inputOutput;
     private ArrayList<DoneOrderSubscriber> doneOrderSubscribers = new ArrayList<>();
     private ArrayList<AddProductSubscriber> addProductSubscribers = new ArrayList<>();
 
-    public CliView() {
-        this.scanner = new Scanner(System.in);
+    public CliView(InputOutput ioHandler) {
+        this.inputOutput = ioHandler;
     }
 
     @Override
@@ -29,24 +27,25 @@ public class CliView implements View {
         int numberChoice;
 
         // Adding a new Order
-        System.out.println("Welcom to the Ice Cream Shop!");
-        System.out.println("=============================");
-        System.out.println("");
+        this.inputOutput.diplay("Welcom to the Ice Cream Shop!");
+        this.inputOutput.diplay("=============================");
+        this.inputOutput.diplay("");
 
         do {
 
-            System.out.println("what product do you want to add?");
+            this.inputOutput.diplay("what product do you want to add?");
 
-            System.out.println("1. Ice Cream");
-            numberChoice = this.scanner.nextInt();
-            System.out.println("You chose option " + numberChoice);
+            this.inputOutput.diplay("1. Ice Cream");
+            numberChoice = this.inputOutput.inputInt();
+            this.inputOutput.diplay("You chose option " + numberChoice);
 
+            //nice to put here a method factory that will return a productMenue acording to the number choice
             switch (numberChoice) {
                 case 1:
-                    product = (new IceCreamMenu()).displayMenue();
+                    product = (new IceCreamMenu(this.inputOutput)).displayMenue();
                     break;
                 default:
-                    product = (new IceCreamMenu()).displayMenue();
+                    product = (new IceCreamMenu(this.inputOutput)).displayMenue();
                     break;
             }
 
@@ -54,16 +53,16 @@ public class CliView implements View {
                 notifyAddProductSubscribers(product);
             }
 
-            System.out.println("Great! do you want another product? ");
-            System.out.println("1. no");
-            System.out.println("2. yes");
-            System.out.println("The default is no if you choose other number");
-            numberChoice = this.scanner.nextInt();
+            this.inputOutput.diplay("Great! do you want another product? ");
+            this.inputOutput.diplay("1. no");
+            this.inputOutput.diplay("2. yes");
+            this.inputOutput.diplay("The default is no if you choose other number");
+            numberChoice = this.inputOutput.inputInt();
             addAnotherProduct = numberChoice == 2 ? true : false;
 
         } while (addAnotherProduct);
 
-        System.out.println("ok, we are preparing your order");
+        this.inputOutput.diplay("ok, we are preparing your order");
 
         notifyDoneOrderSubscribers();
 
@@ -99,21 +98,21 @@ public class CliView implements View {
         
         double totalPrice = 0;
         
-        System.out.println("Good news! your order was delivered and it's on the way to you");
+        this.inputOutput.diplay("Good news! your order was delivered and it's on the way to you");
 
-        System.out.println("Here is the recipe for your order: ");
-        System.out.println("==================================================================");
+        this.inputOutput.diplay("Here is the recipe for your order: ");
+        this.inputOutput.diplay("==================================================================");
         for (OrderIterator iter = order.getIterator(); iter.hasNext();) {
 			Product prod = iter.next();
             String desc = prod.getDescription();
             totalPrice += prod.getPrice();
-            System.out.println(desc);
-            System.out.println("product price: " + prod.getPrice());
-            System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - ");
+            this.inputOutput.diplay(desc);
+            this.inputOutput.diplay("product price: " + prod.getPrice());
+            this.inputOutput.diplay("- - - - - - - - - - - - - - - - - - - - - - - - - - ");
 
         }
-        System.out.println("the total price of your order is: " + totalPrice);
-        System.out.println("==================================================================");
+        this.inputOutput.diplay("the total price of your order is: " + totalPrice);
+        this.inputOutput.diplay("==================================================================");
         
     }
 
