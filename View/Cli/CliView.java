@@ -6,6 +6,8 @@ import Order.OrderIterator;
 import View.InputOutput;
 import View.View;
 import View.Cli.ProductMenus.IceCreamMenu;
+import View.Cli.ProductMenus.ProductCliMenu;
+import View.Cli.ProductMenus.ProductMenuFactory;
 import events.AddProductSubscriber;
 import events.DoneOrderSubscriber;
 import products.Product;
@@ -15,11 +17,14 @@ public class CliView implements View {
     private boolean addAnotherProduct = true;
     private Product product;
     InputOutput inputOutput;
+    ProductMenuFactory productMenuFactory;
+
     private ArrayList<DoneOrderSubscriber> doneOrderSubscribers = new ArrayList<>();
     private ArrayList<AddProductSubscriber> addProductSubscribers = new ArrayList<>();
 
-    public CliView(InputOutput ioHandler) {
+    public CliView(InputOutput ioHandler, ProductMenuFactory productMenuFactory) {
         this.inputOutput = ioHandler;
+        this.productMenuFactory = productMenuFactory;
     }
 
     @Override
@@ -39,15 +44,8 @@ public class CliView implements View {
             numberChoice = this.inputOutput.inputInt();
             this.inputOutput.diplay("You chose option " + numberChoice);
 
-            //nice to put here a method factory that will return a productMenue acording to the number choice
-            switch (numberChoice) {
-                case 1:
-                    product = (new IceCreamMenu(this.inputOutput)).displayMenue();
-                    break;
-                default:
-                    product = (new IceCreamMenu(this.inputOutput)).displayMenue();
-                    break;
-            }
+            ProductCliMenu  currentProductMenu = productMenuFactory.getProductMenu(numberChoice);
+            product = currentProductMenu.displayMenue();
 
             if (product != null) {
                 notifyAddProductSubscribers(product);

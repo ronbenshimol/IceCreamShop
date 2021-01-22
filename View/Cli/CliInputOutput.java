@@ -7,6 +7,10 @@ import View.InputOutput;
 public class CliInputOutput implements InputOutput {
     private Scanner scanner;
 
+    public CliInputOutput() {
+        this.scanner = new Scanner(System.in);
+    }
+
     @Override
     public void diplay(String output) {
         System.out.println(output);
