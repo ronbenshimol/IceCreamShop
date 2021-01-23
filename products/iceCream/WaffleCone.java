@@ -10,7 +10,6 @@ public class WaffleCone implements IceCream {
 
     @Override
     public double getPrice() {
-        // TODO Auto-generated method stub
         return this.price;
     }
 
