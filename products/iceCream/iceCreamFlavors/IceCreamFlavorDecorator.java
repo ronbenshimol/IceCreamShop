@@ -9,9 +9,6 @@ public abstract class IceCreamFlavorDecorator implements IceCream {
     protected String description;
     protected int numberOfScoops;
 
-    // public IceCreamFlavorDecorator(IceCream iceCream) {
-    //     this(iceCream,1);
-    // }
 
     public IceCreamFlavorDecorator(IceCream iceCream, int numberOfScoops) {
         this.iceCream = iceCream;

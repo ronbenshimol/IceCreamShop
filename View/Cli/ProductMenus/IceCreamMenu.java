@@ -24,12 +24,12 @@ public class IceCreamMenu implements ProductCliMenu {
         int numberChoice, numberChoice2;
         
         inputOutput.clearDisplay();
-        inputOutput.display("what Ice Cream do you want?");
-        inputOutput.display("1. in a plastic cup.");
-        inputOutput.display("2. in a waffle cone.");
-        inputOutput.display("The default is a cup if you choose other number");
+        inputOutput.display("Would you like to have your ice cream in a Plastic Cup or a Waffle Cone?");
+        inputOutput.display("1. In a Plastic Cup.");
+        inputOutput.display("2. In a Waffle Cone.");
+        inputOutput.display("The default is a cup you select another number");
         inputOutput.display("");
-        inputOutput.display("please enter the number of your choice...");
+        inputOutput.display("Please enter a number of your choice...");
 
         numberChoice = inputOutput.inputInt();
 
@@ -41,13 +41,13 @@ public class IceCreamMenu implements ProductCliMenu {
 
         inputOutput.clearDisplay();
 
-        inputOutput.display("Great! lets choose the flavors for your Ice Cream now.");
+        inputOutput.display("Great! Let's choose the flavors for your Ice Cream now");
         inputOutput.display("Press any key to continue..");
-        inputOutput.inputLine();
+        String aaa = inputOutput.inputLine();
 
         do {
             inputOutput.clearDisplay();
-            inputOutput.display("what flavor do you want to add?");
+            inputOutput.display("What flavor do you want to add?");
 
             inputOutput.display("1. Vanilla Flavor");
             inputOutput.display("2. Banana Flavor");
@@ -56,7 +56,7 @@ public class IceCreamMenu implements ProductCliMenu {
             numberChoice = inputOutput.inputInt();
 
             inputOutput.clearDisplay();
-            inputOutput.display("You chose option " + numberChoice);
+            inputOutput.display("You have selected option " + numberChoice);
 
             inputOutput.display("");
             inputOutput.display("How many scoops do you want?");
@@ -79,10 +79,10 @@ public class IceCreamMenu implements ProductCliMenu {
 
             inputOutput.clearDisplay();
 
-            inputOutput.display("Great! do you want another flavor? ");
-            inputOutput.display("1. no");
-            inputOutput.display("2. yes");
-            inputOutput.display("The default is no if you choose other number");
+            inputOutput.display("Great! Do you want another flavor? ");
+            inputOutput.display("1. No");
+            inputOutput.display("2. Yes");
+            inputOutput.display("The default is No you select another number");
             numberChoice = inputOutput.inputInt();
             addAnotherFlavor = numberChoice == 2 ? true: false;
             
@@ -92,14 +92,16 @@ public class IceCreamMenu implements ProductCliMenu {
 
         inputOutput.display("This is the ice cream we are going to make:");
         inputOutput.display(iceCream.getDescription());
-        inputOutput.display("the price is: " + iceCream.getPrice());
-        inputOutput.display("do you accept, or you want to cancel the order of this ice cream?");
+        inputOutput.display("The price is: " + iceCream.getPrice());
+        inputOutput.display("Do you accept, or you want to cancel the order of this ice cream?");
 
-        inputOutput.display("1. yes, I want this ice cream.");
-        inputOutput.display("2. no, cancle this ice cream.");
+        inputOutput.display("1. Yes, I want this ice cream.");
+        inputOutput.display("2. No, Cancel this ice cream.");
         numberChoice = inputOutput.inputInt();
-        inputOutput.display("You chose option " + numberChoice);
-
+        inputOutput.display("You have selected option " + numberChoice);
+        inputOutput.display("Press any key to continue...");
+        inputOutput.inputLine();
+        inputOutput.clearDisplay();
         if(numberChoice == 1)
             return iceCream;
         else return null;

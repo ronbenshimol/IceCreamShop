@@ -37,11 +37,11 @@ public class CliView implements View {
 
         do {
 
-            this.inputOutput.display("what product do you want to add?");
+            this.inputOutput.display("What product do you want to add?");
 
             this.inputOutput.display("1. Ice Cream");
             numberChoice = this.inputOutput.inputInt();
-            this.inputOutput.display("You chose option " + numberChoice);
+            this.inputOutput.display("You have selected option " + numberChoice);
 
             ProductCliMenu  currentProductMenu = productMenuFactory.getProductMenu(numberChoice);
             product = currentProductMenu.displayMenu();
@@ -50,16 +50,16 @@ public class CliView implements View {
                 notifyAddProductSubscribers(product);
             }
 
-            this.inputOutput.display("Great! do you want another product? ");
-            this.inputOutput.display("1. no");
-            this.inputOutput.display("2. yes");
-            this.inputOutput.display("The default is no if you choose other number");
+            this.inputOutput.display("Great! Do you want another product? ");
+            this.inputOutput.display("1. No");
+            this.inputOutput.display("2. Yes");
+            this.inputOutput.display("The default is No if you select another number");
             numberChoice = this.inputOutput.inputInt();
             addAnotherProduct = numberChoice == 2 ? true : false;
 
         } while (addAnotherProduct);
 
-        this.inputOutput.display("ok, we are preparing your order");
+        this.inputOutput.display("Ok, we are preparing your order");
 
         notifyDoneOrderSubscribers();
 
@@ -95,20 +95,20 @@ public class CliView implements View {
         
         double totalPrice = 0;
         
-        this.inputOutput.display("Good news! your order was delivered and it's on the way to you");
+        this.inputOutput.display("Good news! Your order has been delivered and is on it's way to you");
 
-        this.inputOutput.display("Here is the recipe for your order: ");
+        this.inputOutput.display("Here is the receipt for your order: ");
         this.inputOutput.display("==================================================================");
         for (OrderIterator iter = order.getIterator(); iter.hasNext();) {
 			Product prod = iter.next();
             String desc = prod.getDescription();
             totalPrice += prod.getPrice();
             this.inputOutput.display(desc);
-            this.inputOutput.display("product price: " + prod.getPrice());
+            this.inputOutput.display("Product price: " + prod.getPrice());
             this.inputOutput.display("- - - - - - - - - - - - - - - - - - - - - - - - - - ");
 
         }
-        this.inputOutput.display("the total price of your order is: " + totalPrice);
+        this.inputOutput.display("The total price of your order is: " + totalPrice);
         this.inputOutput.display("==================================================================");
         
     }

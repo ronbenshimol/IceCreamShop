@@ -18,7 +18,9 @@ public class CliInputOutput implements InputOutput {
 
     @Override
     public int inputInt() {
-        return this.scanner.nextInt();
+        var inputInt = this.scanner.nextInt();
+        this.inputLine();
+        return inputInt;
     }
 
     @Override
