@@ -42,8 +42,8 @@ public class IceCreamMenu implements ProductCliMenu {
         inputOutput.clearDisplay();
 
         inputOutput.display("Great! Let's choose the flavors for your Ice Cream now");
-        inputOutput.display("Press any key to continue..");
-        String aaa = inputOutput.inputLine();
+        inputOutput.display("Press any key to continue...");
+        inputOutput.inputLine();
 
         do {
             inputOutput.clearDisplay();
