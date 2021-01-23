@@ -3,6 +3,6 @@ import products.Product;
 
 public interface ProductCliMenu {
     
-    public Product displayMenue();
+    public Product displayMenu();
 
 }

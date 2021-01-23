@@ -19,7 +19,7 @@ public class IceCreamMenu implements ProductCliMenu {
     }
 
     @Override
-    public Product displayMenue() {
+    public Product displayMenu() {
         
         int numberChoice, numberChoice2;
         

@@ -44,7 +44,7 @@ public class CliView implements View {
             this.inputOutput.diplay("You chose option " + numberChoice);
 
             ProductCliMenu  currentProductMenu = productMenuFactory.getProductMenu(numberChoice);
-            product = currentProductMenu.displayMenue();
+            product = currentProductMenu.displayMenu();
 
             if (product != null) {
                 notifyAddProductSubscribers(product);
