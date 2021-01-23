@@ -24,12 +24,12 @@ public class IceCreamMenu implements ProductCliMenu {
         int numberChoice, numberChoice2;
         
         inputOutput.clearDisplay();
-        inputOutput.diplay("what Ice Cream do you want?");
-        inputOutput.diplay("1. in a plastic cup.");
-        inputOutput.diplay("2. in a waffle cone.");
-        inputOutput.diplay("The default is a cup if you choose other number");
-        inputOutput.diplay("");
-        inputOutput.diplay("please enter the number of your choice...");
+        inputOutput.display("what Ice Cream do you want?");
+        inputOutput.display("1. in a plastic cup.");
+        inputOutput.display("2. in a waffle cone.");
+        inputOutput.display("The default is a cup if you choose other number");
+        inputOutput.display("");
+        inputOutput.display("please enter the number of your choice...");
 
         numberChoice = inputOutput.inputInt();
 
@@ -41,25 +41,25 @@ public class IceCreamMenu implements ProductCliMenu {
 
         inputOutput.clearDisplay();
 
-        inputOutput.diplay("Great! lets choose the flavors for your Ice Cream now.");
-        inputOutput.diplay("Press any key to continue..");
+        inputOutput.display("Great! lets choose the flavors for your Ice Cream now.");
+        inputOutput.display("Press any key to continue..");
         inputOutput.inputLine();
 
         do {
             inputOutput.clearDisplay();
-            inputOutput.diplay("what flavor do you want to add?");
+            inputOutput.display("what flavor do you want to add?");
 
-            inputOutput.diplay("1. Vanilla Flavor");
-            inputOutput.diplay("2. Banana Flavor");
-            inputOutput.diplay("3. Mint Flavor");
-            inputOutput.diplay("The default is a vanilla flavor");
+            inputOutput.display("1. Vanilla Flavor");
+            inputOutput.display("2. Banana Flavor");
+            inputOutput.display("3. Mint Flavor");
+            inputOutput.display("The default is a vanilla flavor");
             numberChoice = inputOutput.inputInt();
 
             inputOutput.clearDisplay();
-            inputOutput.diplay("You chose option " + numberChoice);
+            inputOutput.display("You chose option " + numberChoice);
 
-            inputOutput.diplay("");
-            inputOutput.diplay("How many scoops do you want?");
+            inputOutput.display("");
+            inputOutput.display("How many scoops do you want?");
             numberChoice2 = inputOutput.inputInt();
             
             switch (numberChoice) {
@@ -79,10 +79,10 @@ public class IceCreamMenu implements ProductCliMenu {
 
             inputOutput.clearDisplay();
 
-            inputOutput.diplay("Great! do you want another flavor? ");
-            inputOutput.diplay("1. no");
-            inputOutput.diplay("2. yes");
-            inputOutput.diplay("The default is no if you choose other number");
+            inputOutput.display("Great! do you want another flavor? ");
+            inputOutput.display("1. no");
+            inputOutput.display("2. yes");
+            inputOutput.display("The default is no if you choose other number");
             numberChoice = inputOutput.inputInt();
             addAnotherFlavor = numberChoice == 2 ? true: false;
             
@@ -90,15 +90,15 @@ public class IceCreamMenu implements ProductCliMenu {
 
         inputOutput.clearDisplay();
 
-        inputOutput.diplay("This is the ice cream we are going to make:");
-        inputOutput.diplay(iceCream.getDescription());
-        inputOutput.diplay("the price is: " + iceCream.getPrice());
-        inputOutput.diplay("do you accept, or you want to cancel the order of this ice cream?");
+        inputOutput.display("This is the ice cream we are going to make:");
+        inputOutput.display(iceCream.getDescription());
+        inputOutput.display("the price is: " + iceCream.getPrice());
+        inputOutput.display("do you accept, or you want to cancel the order of this ice cream?");
 
-        inputOutput.diplay("1. yes, I want this ice cream.");
-        inputOutput.diplay("2. no, cancle this ice cream.");
+        inputOutput.display("1. yes, I want this ice cream.");
+        inputOutput.display("2. no, cancle this ice cream.");
         numberChoice = inputOutput.inputInt();
-        inputOutput.diplay("You chose option " + numberChoice);
+        inputOutput.display("You chose option " + numberChoice);
 
         if(numberChoice == 1)
             return iceCream;

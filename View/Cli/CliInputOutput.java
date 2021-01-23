@@ -12,7 +12,7 @@ public class CliInputOutput implements InputOutput {
     }
 
     @Override
-    public void diplay(String output) {
+    public void display(String output) {
         System.out.println(output);
     }
 
